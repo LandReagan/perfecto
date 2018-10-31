@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
       drawer: HomePageDrawer(),
       body: Column(
         children: <Widget>[
-          // Last three tasks
+          // Flow tasks
           FlowTasksWidget(),
           // Three stories with highest priority
 

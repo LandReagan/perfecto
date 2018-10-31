@@ -5,7 +5,7 @@ class Task {
   String title;
   String description;
   DateTime deadline;
-  String status;
+  String _status;
 
   Task(this.title, {this.description = ''});
 
@@ -14,14 +14,18 @@ class Task {
     if (data.containsKey('description')) description = data['description'];
     if (data.containsKey('deadline'))
       deadline = DateTime.parse(data['deadline']);
-    if (data.containsKey('status')) {
-      if (STATUS.contains(data['status'])) status = data['status'];
-    }
+    if (data.containsKey('status')) status = data['status'];
   }
 
   Duration get remainingTime {
     return deadline == null ?
         Duration.zero : deadline.difference(DateTime.now());
+  }
+
+  String get status => _status;
+
+  set status(String str) {
+    if (STATUS.contains(str)) _status = str;
   }
 
   Map<String, dynamic> toMap() {

@@ -7,21 +7,32 @@ import 'package:perfecto/objects/Task.dart';
 import 'package:perfecto/widgets/TaskWidget.dart';
 
 
-class FlowTasksWidget extends StatelessWidget {
+class FlowTasksWidget extends StatefulWidget {
 
-  Widget _buildList(BuildContext context, List<DocumentSnapshot> snapshot) {
-    return ListView(
-      children: snapshot
-    );
+  FlowTasksWidgetState createState() => FlowTasksWidgetState();
+}
+
+
+class FlowTasksWidgetState extends State<FlowTasksWidget> {
+
+  List<Task> tasks = [];
+
+  void updateTasks() async {
+    tasks = await Database.getFlowTasks();
+    setState(() {
+
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
-      stream: Database.getFlowTasksStream(),
-      builder: (context, snapshot) {
-        if (!snapshot.hasData) return LinearProgressIndicator();
-        return _buildList(context, snapshot.data.documents);
+
+    if (tasks.isEmpty) return Text('Loading...');
+
+    return ListView.builder(
+      itemCount: tasks.length,
+      itemBuilder: (context, item) {
+        TaskWidget(tasks[item]);
       }
     );
   }
