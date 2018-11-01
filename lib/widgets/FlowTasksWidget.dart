@@ -26,9 +26,7 @@ class FlowTasksWidgetState extends State<FlowTasksWidget> {
 
   @override
   Widget build(BuildContext context) {
-
     if (tasks.isEmpty) return Text('Loading...');
-
     return ListView.builder(
       itemCount: tasks.length,
       itemBuilder: (context, item) {
