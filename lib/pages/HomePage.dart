@@ -25,7 +25,8 @@ class _HomePageState extends State<HomePage> {
         title: new Text(widget.title),
       ),
       drawer: HomePageDrawer(),
-      body: Column(
+      body: FlowTasksWidget(),
+      /* Column(
         children: <Widget>[
           // Flow tasks
           FlowTasksWidget(),
@@ -37,8 +38,14 @@ class _HomePageState extends State<HomePage> {
 
         ],
       ),
+      */
       floatingActionButton: new FloatingActionButton(
-        onPressed: null,
+        onPressed: () {
+          showTimePicker(
+            context: context,
+            initialTime: TimeOfDay.now(),
+          ).then((time) => print(time.toString()));
+        },
         tooltip: 'Create',
         child: new Icon(Icons.add),
       ),

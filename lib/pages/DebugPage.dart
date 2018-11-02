@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:perfecto/database/Database.dart';
-
-
 class DebugPage extends StatelessWidget {
 
   final String text;

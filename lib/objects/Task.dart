@@ -10,11 +10,14 @@ class Task {
   Task(this.title, {this.description = ''});
 
   Task.fromMap(Map<String, dynamic> data) {
-    title = data['title'];
-    if (data.containsKey('description')) description = data['description'];
-    if (data.containsKey('deadline'))
+    title = data['title'] ?? '#UNKNOWN#';
+    //if (data.containsKey('description')) description = data['description'];
+    description = data['description'] ?? '';
+    if (data.containsKey('deadline') && data['deadline'] is String)
       deadline = DateTime.parse(data['deadline']);
-    if (data.containsKey('status')) status = data['status'];
+    else deadline = null;
+    //if (data.containsKey('status')) status = data['status'];
+    status = data['status'] ?? 'To Do';
   }
 
   Duration get remainingTime {

@@ -29,7 +29,7 @@ class TaskWidgetState extends State<TaskWidget> {
     return CheckboxListTile(
       value: _value,
       title: Text(widget.task.title),
-      subtitle: Text(widget.task.description),
+      subtitle: widget.task.description == null ? Text('') : Text(widget.task.description),
       onChanged: (state) {
         _taskStateChanged();
       },
