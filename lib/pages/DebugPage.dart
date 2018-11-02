@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:perfecto/widgets/NewTaskDialog.dart';
+
 class DebugPage extends StatelessWidget {
 
   final String text;
@@ -12,7 +14,23 @@ class DebugPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Debugging page...'),
       ),
-      body: Text('...'),
+      body: ListView(
+        children: <Widget>[
+          ListTile(
+            title: Text('Trigger a Task input dialog box:'),
+            trailing: Icon(Icons.arrow_forward),
+            onTap: () {
+              print('New Task dialog showing...');
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return NewTaskDialog();
+                }
+              );
+            },
+          )
+        ],
+      )
     );
   }
 }
