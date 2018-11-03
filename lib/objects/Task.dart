@@ -33,10 +33,10 @@ class Task {
 
   Map<String, dynamic> toMap() {
     return {
-      'title': title,
-      'description': description,
-      'deadline': deadline.toIso8601String(),
-      'status': status
+      'title': title ?? '#UNKNOWN#',
+      'description': description ?? '',
+      'deadline': deadline?.toIso8601String() ?? null,
+      'status': status ?? ''
     };
   }
 }
