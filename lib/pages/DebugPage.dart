@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:perfecto/widgets/NewTaskDialog.dart';
+import 'package:perfecto/widgets/DateTimeInputWidget.dart';
 
 class DebugPage extends StatelessWidget {
 
@@ -28,7 +29,19 @@ class DebugPage extends StatelessWidget {
                 }
               );
             },
-          )
+          ),
+          ListTile(
+            title: Text('Date Time widget'),
+            trailing: Icon(Icons.arrow_forward),
+            onTap: () {
+              showDialog(
+                  context: context,
+                  builder: (context) {
+                    return DateTimeInputWidget(DateTime.now());
+                  }
+              );
+            },
+          ),
         ],
       )
     );

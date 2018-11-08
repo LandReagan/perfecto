@@ -6,8 +6,9 @@ import 'package:perfecto/objects/Task.dart';
 class TaskWidget extends StatefulWidget {
 
   final Task task;
+  final String databaseTaskId;
 
-  TaskWidget(this.task);
+  TaskWidget(this.task, this.databaseTaskId);
 
   @override
   TaskWidgetState createState() => TaskWidgetState();
@@ -16,22 +17,33 @@ class TaskWidget extends StatefulWidget {
 
 class TaskWidgetState extends State<TaskWidget> {
 
-  bool _value = false;
+  Task _changedTask;
 
-  void _taskStateChanged() {
+  @override
+  void initState() {
+    _changedTask = widget.task;
+    super.initState();
+  }
+
+  void _changeStatus(bool state) {
+    if (!state) {
+      _changedTask.status = 'To Do';
+    } else {
+      _changedTask.status = 'Done';
+    }
     setState(() {
-      _value = !_value;
+
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return CheckboxListTile(
-      value: _value,
-      title: Text(widget.task.title),
-      subtitle: widget.task.description == null ? Text('') : Text(widget.task.description),
+      value: _changedTask.status == 'Done',
+      title: Text(_changedTask.title),
+      subtitle: _changedTask.description == null ? Text('') : Text(_changedTask.description),
       onChanged: (state) {
-        _taskStateChanged();
+        _changeStatus(state);
       },
     );
   }

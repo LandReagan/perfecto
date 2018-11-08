@@ -36,7 +36,10 @@ class FlowTasksWidget extends StatelessWidget {
         return ListView.builder(
           itemCount: snapshot.data.documents.length,
           itemBuilder: (context, index) {
-            return TaskWidget(Task.fromMap(snapshot.data.documents[index].data));
+            return TaskWidget(
+              Task.fromMap(snapshot.data.documents[index].data),
+                snapshot.data.documents[index].documentID
+            );
           });
       }
     );

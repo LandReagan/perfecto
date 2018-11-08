@@ -7,7 +7,9 @@ class Task {
   DateTime deadline;
   String _status;
 
-  Task(this.title, {this.description = ''});
+  Task(this.title, {this.description = ''}){
+    _status = 'To Do';
+  }
 
   Task.fromMap(Map<String, dynamic> data) {
     title = data['title'] ?? '#UNKNOWN#';

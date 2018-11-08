@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:perfecto/database/Database.dart';
 import 'package:perfecto/objects/Task.dart' show Task;
 
 
@@ -12,21 +13,21 @@ class _NewTaskDialogState extends State<NewTaskDialog> {
   Task task = Task('#UNKNOWN#');
 
   void _addTask() {
-    //TODO: link to Database
     print('Adding task: ' + task.toMap().toString());
-  }
+    Database.addNewTask(task);  }
 
   // TODO: move this somewhere else...
   InputDecoration _getTextFieldDecoration(String hint) {
     return InputDecoration(
-        hintText: hint,
+        labelText: hint,
         border: OutlineInputBorder()
     );
   }
 
   Widget build(BuildContext context) {
     return SimpleDialog(
-      title: Text('Add a task...'),
+      title: Text('Add a task...',
+          style: TextStyle(fontStyle: FontStyle.italic),),
       contentPadding: EdgeInsets.all(10.0),
       children: <Widget>[
         TextField(
@@ -36,12 +37,14 @@ class _NewTaskDialogState extends State<NewTaskDialog> {
             task.title = value.toString();
           },
         ),
+        Divider(height: 10.0,),
         TextField(
           decoration: _getTextFieldDecoration('Task description (optional)...'),
           onChanged: (value) {
             task.description = value.toString();
           },
         ),
+        Divider(height: 10.0,),
         Container(
           alignment: Alignment.center,
           decoration: BoxDecoration(
@@ -65,6 +68,7 @@ class _NewTaskDialogState extends State<NewTaskDialog> {
             },
           ),
         ),
+        Divider(height: 10.0,),
         Row(
           children: <Widget>[
             SimpleDialogOption(
