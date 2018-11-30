@@ -45,6 +45,8 @@ class _NewTaskDialogState extends State<NewTaskDialog> {
           },
         ),
         Divider(height: 10.0,),
+        Text('Date time'),
+        Divider(height: 10.0,),
         Container(
           alignment: Alignment.center,
           decoration: BoxDecoration(
