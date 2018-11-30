@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:perfecto/database/Database.dart';
 import 'package:perfecto/objects/Task.dart' show Task;
+import 'package:perfecto/widgets/DateTimeInputWidget.dart';
 
 
 class NewTaskDialog extends StatefulWidget {
@@ -10,11 +11,21 @@ class NewTaskDialog extends StatefulWidget {
 
 class _NewTaskDialogState extends State<NewTaskDialog> {
 
-  Task task = Task('#UNKNOWN#');
+  Task task;
+  DateTimeInputWidget dateTimeInputWidget;
+
+  @override
+  void initState() {
+    super.initState();
+    task = Task('#UNKNOWN');
+    dateTimeInputWidget = DateTimeInputWidget(DateTime.now());
+  }
 
   void _addTask() {
+    task.deadline = dateTimeInputWidget.datetime;
     print('Adding task: ' + task.toMap().toString());
-    Database.addNewTask(task);  }
+    Database.addNewTask(task);
+  }
 
   // TODO: move this somewhere else...
   InputDecoration _getTextFieldDecoration(String hint) {
@@ -45,7 +56,7 @@ class _NewTaskDialogState extends State<NewTaskDialog> {
           },
         ),
         Divider(height: 10.0,),
-        Text('Date time'),
+        dateTimeInputWidget,
         Divider(height: 10.0,),
         Container(
           alignment: Alignment.center,
@@ -84,6 +95,7 @@ class _NewTaskDialogState extends State<NewTaskDialog> {
               child: const Text('ADD'),
               onPressed: () {
                 _addTask();
+                Navigator.pop(context);
               },
             )
           ],
