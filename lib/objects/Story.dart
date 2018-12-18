@@ -1,9 +1,11 @@
+import 'package:perfecto/database/DatabaseMeta.dart';
+
 import 'package:perfecto/objects/Complexity.dart';
 import 'package:perfecto/objects/Priority.dart';
 import 'package:perfecto/objects/Task.dart';
 
-
-class Story {
+// TODO: implement Databasable
+class Story with DatabaseMeta {
 
   String title;
   String description;
@@ -24,4 +26,5 @@ class Story {
   String get priorityLevel => priority.level;
 
   void addTask(Task task) => tasks.add(task);
+  void addTasks(List<Task> newTasks) => tasks = List.from(tasks)..addAll(newTasks);
 }

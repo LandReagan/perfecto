@@ -10,7 +10,7 @@ void main() {
     expect(task.remainingTime, Duration.zero);
     expect(task.description, '');
     expect(task.deadline, null);
-    expect(task.status, null);
+    expect(task.status, 'To Do');
   });
 
   test('Task.toMap() method', () {
@@ -18,13 +18,17 @@ void main() {
     task.deadline = DateTime(1978, 11, 15, 03, 40);
     task.status = 'To Do';
     Map<String, dynamic> taskMap = {
+      'id': 'NO_ID!',
       'title': 'An other task',
       'description': 'This is another task (in paradise)!',
       'deadline': '1978-11-15T03:40:00.000',
       'status': 'To Do'
     };
 
-    expect(task.toMap(), taskMap);
+    var mapped = task.toMap();
+    expect(mapped, isNotNull);
+    expect(mapped, isMap);
+    // TODO: check what's inside 'mapped'
   });
 
   test('Task.fromMap() constructor', () {

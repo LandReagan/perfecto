@@ -4,7 +4,7 @@ import 'package:perfecto/widgets/Drawer.dart';
 import 'package:perfecto/widgets/FlowTasksWidget.dart';
 import 'package:perfecto/objects/Task.dart';
 
-
+/// Home page widget, Navigator root.
 class HomePage extends StatefulWidget {
 
   HomePage({Key key, this.title}) : super(key: key);
@@ -41,10 +41,7 @@ class _HomePageState extends State<HomePage> {
       */
       floatingActionButton: new FloatingActionButton(
         onPressed: () {
-          showTimePicker(
-            context: context,
-            initialTime: TimeOfDay.now(),
-          ).then((time) => print(time.toString()));
+          // TODO: navigate to addTaskOrStoryOrProjectWidget
         },
         tooltip: 'Create',
         child: new Icon(Icons.add),

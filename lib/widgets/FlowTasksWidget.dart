@@ -2,15 +2,19 @@ import 'package:flutter/material.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'package:perfecto/services/Firestore.dart';
+import 'package:perfecto/services/FirestoreServices.dart';
 
-import 'package:perfecto/database/Database.dart';
 import 'package:perfecto/objects/Task.dart';
 import 'package:perfecto/widgets/TaskWidget.dart';
 
-
+/// Shows the last created [numberOfTasks] or 3 flow tasks.
 class FlowTasksWidget extends StatelessWidget {
 
+  final int numberOfTasks;
+
+  FlowTasksWidget({number=3}) : numberOfTasks=number;
+
+  // TODO: implement numberOfTasks and Database
   Widget build(BuildContext context) {
     return StreamBuilder(
       stream: Firestore.instance

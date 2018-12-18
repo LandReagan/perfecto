@@ -2,16 +2,16 @@ class Complexity {
 
   static List<String> TSHIRTS = ['UNKNOWN', 'XS', 'S', 'M', 'L', 'XL'];
 
-  int _value;
+  int value;
 
   Complexity.fromTShirts(String size) {
     if(TSHIRTS.contains(size)) {
-      _value = TSHIRTS.indexOf(size);
+      value = TSHIRTS.indexOf(size);
     } else {
       // Fallback
-      _value = 0;
+      value = 0;
     }
   }
 
-  String get level => TSHIRTS[_value];
+  String get level => TSHIRTS[value];
 }

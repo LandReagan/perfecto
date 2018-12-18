@@ -24,7 +24,7 @@ class _NewTaskDialogState extends State<NewTaskDialog> {
   void _addTask() {
     task.deadline = dateTimeInputWidget.datetime;
     print('Adding task: ' + task.toMap().toString());
-    Database.addNewTask(task);
+    //TODO: Database.addNewTask(task);
   }
 
   // TODO: move this somewhere else...

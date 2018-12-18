@@ -3,16 +3,16 @@ class Priority {
   static List<String> LEVELS =
       ['UNKNOWN', 'lowest', 'low', 'medium', 'high', 'highest'];
 
-  int _value;
+  int value;
 
   Priority.fromLevels(String level) {
     if(LEVELS.contains(level)) {
-      _value = LEVELS.indexOf(level);
+      value = LEVELS.indexOf(level);
     } else {
       // Fallback
-      _value = 0;
+      value = 0;
     }
   }
 
-  String get level => LEVELS[_value];
+  String get level => LEVELS[value];
 }

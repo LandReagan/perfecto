@@ -6,7 +6,7 @@ import 'package:perfecto/pages/HomePage.dart';
 
 void main() => runApp(PerfectOApp());
 
-
+/// Entry class to build the Material App
 class PerfectOApp extends StatelessWidget {
 
   @override
