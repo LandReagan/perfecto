@@ -17,9 +17,7 @@ class FlowTasksWidget extends StatelessWidget {
   // TODO: implement numberOfTasks and Database
   Widget build(BuildContext context) {
     return StreamBuilder(
-      stream: Firestore.instance
-          .collection(FirestoreServices.flowTasksCollectionPath)
-          .snapshots(),
+      stream: FirestoreServices.flowTasksCollection.snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) return Text('Loading...');
         return ListView.builder(

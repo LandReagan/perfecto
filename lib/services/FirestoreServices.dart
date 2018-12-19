@@ -1,18 +1,21 @@
-import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'package:perfecto/objects/Task.dart';
-
-
+/// Firestore stuff
 class FirestoreServices {
+  // Instance
+  static Firestore instance = Firestore.instance;
 
-  // Paths
-  static String flowTasksCollectionPath =
+  // Static Collection paths (immutable)
+  static final String _projectsCollectionPath = 'projects';
+  static final String _flowStoriesCollectionPath = 'projects/flow/backlog';
+  static final String _flowTasksCollectionPath =
       'projects/flow/backlog/story_flow/tasks';
-  // TODO: path to flow stories
 
-  // Streams
-  // TODO: write static method to retieve the Stream of Flow tasks as Map
-  // TODO: write static method to retieve the Stream of Flow stories as Map
+  // Static Collections (immutable)
+  static final CollectionReference projectsCollection =
+      instance.collection(_projectsCollectionPath);
+  static final CollectionReference flowStoriesCollection =
+      instance.collection(_flowStoriesCollectionPath);
+  static final CollectionReference flowTasksCollection =
+      instance.collection(_flowTasksCollectionPath);
 }

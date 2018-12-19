@@ -1,3 +1,5 @@
+import 'dart:convert' show json;
+
 import 'package:perfecto/database/DatabaseMeta.dart' show DatabaseMeta;
 
 /// A Task represents the smallest piece of work. It has at least a title and an
@@ -56,11 +58,17 @@ class Task with DatabaseMeta {
   Map<String, dynamic> toMap() {
     return {
       'id': id ?? '#UNKNOWN#',
-      'creationDateTime': creationDateTime ?? '#UNKNOWN#',
+      'creationDateTime': creationDateTime?.toIso8601String() ?? '#UNKNOWN#',
       'title': title ?? '#UNKNOWN#',
       'description': description ?? '',
-      'deadline': deadline?.toIso8601String() ?? null,
+      'deadline': deadline?.toIso8601String() ?? '',
       'status': status ?? ''
     };
+  }
+
+  // DEBUG
+  @override
+  String toString() {
+    return json.encode(this.toMap());
   }
 }

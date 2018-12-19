@@ -28,11 +28,16 @@ void main() {
     var mapped = task.toMap();
     expect(mapped, isNotNull);
     expect(mapped, isMap);
-    // TODO: check what's inside 'mapped'
+    expect(mapped['id'], '#UNKNOWN#');
+    expect(mapped['creationDateTime'] is String, isTrue);
+    expect(mapped['title'], 'An other task');
+    expect(mapped['deadline'], '1978-11-15T03:40:00.000');
+    expect(mapped['status'], 'To Do');
+    expect(mapped['description'], 'This is another task (in paradise)!');
   });
 
   test('Task.fromMap() constructor', () {
-    Map<String, dynamic> taskMap = {
+    Map<String, String> taskMap = {
       'title': 'An other task',
       'description': 'This is another task (in paradise)!',
       'deadline': '1978-11-15T03:40:00.000',
@@ -44,5 +49,16 @@ void main() {
     expect(task.description, 'This is another task (in paradise)!');
     expect(task.deadline, DateTime(1978, 11, 15, 03, 40));
     expect(task.status, 'To Do');
+  });
+
+  test('Task.toString() method', () {
+    Map<String, String> taskMap = {
+      'title': 'An other task',
+      'description': 'This is another task (in paradise)!',
+      'status': 'To Do'
+    };
+    Task task = Task.fromMap(taskMap);
+    expect(task.toString() is String, isTrue);
+    expect(task.toString().length, 156);
   });
 }
